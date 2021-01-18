@@ -1,10 +1,49 @@
-@media (max-width: 800px) {
+.todo-navbar-container {
+    background-color: var(--light-grey);
+    display: grid;
+    flex-grow: 1;
+    grid-template-columns: 50% 50%;
+    grid-template-rows: 4% 15% 15% 40% 5%;
+    grid-template-areas:
+        'search search'
+        'today scheduled'
+        'all-notifs all-notifs'
+        'reminders reminders'
+        'add-list add-list';
+    padding-top: 50px;
+}
+
+.searchbox-container {
+    grid-area: search;
+    background-color: red;
+}
+
+.today-filter-container {
+    grid-area: today;
+    background-color: blue;
+}
+
+.scheduled-filter-container {
+    grid-area: scheduled;
+    background-color: pink;
+}
+
+.all-filter-container {
+    grid-area: all-notifs;
+    background-color: black;
+}
+
+.reminders-container {
+    grid-area: reminders;
+    background-color: green;
+}
+
+.add-list-button-container {
+    grid-area: add-list;
+    background-color: orange;
+}
+@media (max-width: 850px), (max-height: 700px) {
     .todo-navbar-container {
         display: none;
     }
-}
-
-.todo-navbar-container {
-    background-color: var(--light-grey);
-    flex-grow: 1;
 }

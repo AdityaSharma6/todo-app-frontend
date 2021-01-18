@@ -26,10 +26,10 @@ export const BodyComponent: FunctionComponent<Body> = (props: Body) => {
         }
     };
 
-    const countCompleted = () => {
+    const countCompleted = (lists: List[]) => {
         let count = 0;
-        for (let i: number = 0; i < props.lists.length; i++) {
-            const list: List = props.lists[i];
+        for (let i: number = 0; i < lists.length; i++) {
+            const list: List = lists[i];
             for (let j: number = 0; j < list.items.length; j++) {
                 const item = list.items[j];
                 if (item.completedStatus) {
@@ -49,6 +49,21 @@ export const BodyComponent: FunctionComponent<Body> = (props: Body) => {
             );
         } else {
             return;
+        }
+    };
+
+    const getListsToDisplay = () => {
+        if (props.displayStatus === DisplayStatus.All) {
+            return props.lists;
+        } else if (props.displayStatus === DisplayStatus.PersonalLists) {
+            const selectedList = props.lists.filter(value => {
+                return value.title === props.personalListName;
+            });
+            return selectedList;
+        } else if (props.displayStatus === DisplayStatus.Scheduled) {
+            return [];
+        } else {
+            return [];
         }
     };
 
@@ -87,7 +102,7 @@ export const BodyComponent: FunctionComponent<Body> = (props: Body) => {
             <div className={'todo-display-status-container'}>
                 {displayStatus()}
             </div>
-            {countCompleted()}
+            {countCompleted(getListsToDisplay())}
             {accumulateLists()}
         </div>
     );

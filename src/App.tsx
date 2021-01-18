@@ -51,7 +51,7 @@ var dummyList2: List = {
 var dummyLists: List[] = [dummyList, dummyList2];
 
 var dummyBody: Body = {
-    displayStatus: DisplayStatus.PersonalLists,
+    displayStatus: DisplayStatus.All,
     personalListName: 'Second Title',
     lists: dummyLists,
 };
