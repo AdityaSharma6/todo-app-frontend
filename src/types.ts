@@ -12,12 +12,10 @@ export type Item = {
 export type List = {
     title: string,
     creationDate: string,
-    items: Item[]
+    items: Item[],
+    displayStatus: DisplayStatus
 }
 
-export type ListCollection = {
-    lists: List[];
-}
 
 export enum DisplayStatus {
     All,

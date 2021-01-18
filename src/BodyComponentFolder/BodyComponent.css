@@ -46,7 +46,6 @@
 
     border-bottom: 1px solid var(--custom-white);
     padding-bottom: 5px;
-    margin-bottom: 10px;
 }
 
 .todo-completed-status-value {

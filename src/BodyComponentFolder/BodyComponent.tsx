@@ -20,7 +20,7 @@ export const BodyComponent: FunctionComponent<Body> = (props: Body) => {
         } else {
             return (
                 <div className={'default-display-status'}>
-                    {DisplayStatus[DisplayStatus.PersonalLists]}
+                    {props.personalListName}
                 </div>
             );
         }
@@ -52,13 +52,43 @@ export const BodyComponent: FunctionComponent<Body> = (props: Body) => {
         }
     };
 
+    const accumulateLists = () => {
+        if (props.displayStatus === DisplayStatus.All) {
+            const allLists = props.lists.map((value, index) => {
+                return (
+                    <ListComponent
+                        title={props.lists[index].title}
+                        items={props.lists[index].items}
+                        creationDate={props.lists[index].creationDate}
+                        displayStatus={props.displayStatus}
+                    />
+                );
+            });
+            return allLists;
+        } else if (props.displayStatus === DisplayStatus.PersonalLists) {
+            const list = props.lists.filter(value => {
+                return value.title === props.personalListName;
+            });
+            return (
+                <ListComponent
+                    title={list[0].title}
+                    items={list[0].items}
+                    creationDate={list[0].creationDate}
+                    displayStatus={props.displayStatus}
+                />
+            );
+        } else {
+            return;
+        }
+    };
+
     return (
         <div className={'todo-body-container'}>
             <div className={'todo-display-status-container'}>
                 {displayStatus()}
             </div>
             {countCompleted()}
-            <ListComponent lists={props.lists} />
+            {accumulateLists()}
         </div>
     );
 };

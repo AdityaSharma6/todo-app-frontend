@@ -1,0 +1,22 @@
+:root {
+    --light-grey: #2c2c2c;
+    --dark-grey: #1c1c24;
+    --light-blue: #2464c4;
+    --super-light-grey: grey;
+    --custom-white: rgba(248, 248, 255, 0.918);
+    --orange: #f4a43c;
+}
+
+.list-container {
+    margin-top: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+}
+
+.list-title-all {
+    color: var(--light-blue);
+    margin-bottom: 10px;
+    font-size: x-large;
+}

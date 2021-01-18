@@ -38,13 +38,21 @@ var dummyList: List = {
     title: 'First Title',
     creationDate: Date().toString(),
     items: [dummyItem1, dummyItem2, dummyItem3],
+    displayStatus: DisplayStatus.All,
 };
 
-var dummyLists: List[] = [dummyList];
+var dummyList2: List = {
+    title: 'Second Title',
+    creationDate: Date().toString(),
+    items: [dummyItem1, dummyItem2, dummyItem3],
+    displayStatus: DisplayStatus.All,
+};
+
+var dummyLists: List[] = [dummyList, dummyList2];
 
 var dummyBody: Body = {
-    displayStatus: DisplayStatus.All,
-    personalListName: 'Personal List Name',
+    displayStatus: DisplayStatus.PersonalLists,
+    personalListName: 'Second Title',
     lists: dummyLists,
 };
 
@@ -60,6 +68,7 @@ function App() {
         </div>
     );
 }
+
 {
     /* 
   var dd: ItemProps = {
