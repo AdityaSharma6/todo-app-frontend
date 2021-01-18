@@ -1,5 +1,7 @@
 import { FunctionComponent } from 'react';
+import { ListComponent } from '../ListComponentFolder/ListComponent';
 import { Body, DisplayStatus, List } from '../types';
+import './BodyComponent.css';
 
 export const BodyComponent: FunctionComponent<Body> = (props: Body) => {
     const displayStatus = () => {
@@ -35,17 +37,28 @@ export const BodyComponent: FunctionComponent<Body> = (props: Body) => {
                 }
             }
         }
-        return count;
+
+        if (count) {
+            return (
+                <div className={'todo-completed-status-container'}>
+                    <div className={'todo-completed-status-value'}>
+                        {count} Completed
+                    </div>
+                    <button className={'show-completed-button'}>Show</button>
+                </div>
+            );
+        } else {
+            return;
+        }
     };
 
     return (
         <div className={'todo-body-container'}>
             <div className={'todo-display-status-container'}>
-                All
+                {displayStatus()}
             </div>
-            <div className={'todo-completed-status-container'}>
-
-            </div>
+            {countCompleted()}
+            <ListComponent lists={props.lists} />
         </div>
     );
 };

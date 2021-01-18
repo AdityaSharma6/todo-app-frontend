@@ -26,9 +26,11 @@ body {
 }
 
 .todo-list-container {
-    border: 3px solid red;
-    min-width: 1220px;
-    min-height: 750px;
+    border: 1px solid var(--custom-white);
+    width: 80vw;
+    height: 66vh;
+    min-width: 300px;
+    min-height: 600px;
     margin: 0;
     padding: 0;
 
@@ -37,12 +39,7 @@ body {
     justify-content: flex-start;
 }
 
-.todo-navbar-container {
-    background-color: var(--light-grey);
-    flex-grow: 1;
-}
-
 .todo-body-container {
     background-color: var(--dark-grey);
-    flex-grow: 1;
+    flex-grow: 2;
 }

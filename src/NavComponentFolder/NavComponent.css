@@ -1,0 +1,10 @@
+@media (max-width: 800px) {
+    .todo-navbar-container {
+        display: none;
+    }
+}
+
+.todo-navbar-container {
+    background-color: var(--light-grey);
+    flex-grow: 1;
+}

@@ -1,10 +1,10 @@
 import React from 'react';
 import './App.css';
-import { BodyComponent } from './BodyComponent/BodyComponent';
-import { NavComponent } from './NavComponent/NavComponent';
+import { BodyComponent } from './BodyComponentFolder/BodyComponent';
+import { NavComponent } from './NavComponentFolder/NavComponent';
 import { Body, DisplayStatus, Item, List } from './types';
 
-var dummyItem: Item = {
+var dummyItem1: Item = {
     _id: 'lajksdf98',
     listId: '8904034',
     title: 'First Item',
@@ -14,16 +14,37 @@ var dummyItem: Item = {
     completedStatus: true,
 };
 
+var dummyItem2: Item = {
+    _id: 'lajksdf98',
+    listId: '8904034',
+    title: 'Second Item',
+    creationDate: Date().toString(),
+    dueDate: Date().toString(),
+    completedStatus: true,
+};
+
+var dummyItem3: Item = {
+    _id: 'lajksdf98',
+    listId: '8904034',
+    title: 'Third Item',
+    description:
+        'Third Description. Description so long that it should go to another line and then this should wrap and continue underneath the original starting line. Just writing to accomplish that purpose. Woowza.',
+    creationDate: Date().toString(),
+    dueDate: Date().toString(),
+    completedStatus: true,
+};
+
 var dummyList: List = {
     title: 'First Title',
     creationDate: Date().toString(),
-    items: [dummyItem],
+    items: [dummyItem1, dummyItem2, dummyItem3],
 };
 
 var dummyLists: List[] = [dummyList];
 
 var dummyBody: Body = {
     displayStatus: DisplayStatus.All,
+    personalListName: 'Personal List Name',
     lists: dummyLists,
 };
 
@@ -34,6 +55,7 @@ function App() {
             <BodyComponent
                 displayStatus={dummyBody.displayStatus}
                 lists={dummyBody.lists}
+                personalListName={dummyBody.personalListName}
             />
         </div>
     );

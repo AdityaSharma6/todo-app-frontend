@@ -3,16 +3,20 @@ export type Item = {
     _id: string,
     listId: string,
     title: string,
-    description: string,
+    description?: string,
     creationDate: string,
     dueDate: string,
-    completedStatus: Boolean
+    completedStatus: boolean
 };
 
 export type List = {
     title: string,
     creationDate: string,
     items: Item[]
+}
+
+export type ListCollection = {
+    lists: List[];
 }
 
 export enum DisplayStatus {
@@ -24,5 +28,6 @@ export enum DisplayStatus {
 
 export type Body = {
     displayStatus: DisplayStatus;
+    personalListName?: string;
     lists: List[];
 }
