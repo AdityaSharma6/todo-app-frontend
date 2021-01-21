@@ -37,7 +37,7 @@ var dummyItem3: Item = {
 var dummyList: List = {
     title: 'First Title',
     creationDate: Date().toString(),
-    items: [dummyItem1, dummyItem2, dummyItem3],
+    items: [dummyItem1, dummyItem2, dummyItem3, dummyItem3],
     displayStatus: DisplayStatus.All,
 };
 

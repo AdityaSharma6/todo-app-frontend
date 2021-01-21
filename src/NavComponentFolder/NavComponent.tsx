@@ -9,10 +9,19 @@ export const NavComponent: FunctionComponent<Body> = (props: Body) => {
     const getPersonalListTitles = () => {
         const titles = props.lists.map(value => {
             return (
-                <div>
-                    <FontAwesomeIcon icon={'list-ul'} />
-                    <span>{value.title}</span>
-                    {countItems(true, value.items)}
+                <div
+                    className={'personal-list-title-container'}
+                    key={value.title}>
+                    <FontAwesomeIcon
+                        icon={'list-ul'}
+                        className={'personal-list-title-icon'}
+                    />
+                    <div className={'personal-list-title-value'}>
+                        {value.title}
+                    </div>
+                    <div className={'personal-list-title-count'}>
+                        {countItems(true, value.items)}
+                    </div>
                 </div>
             );
         });
@@ -43,9 +52,11 @@ export const NavComponent: FunctionComponent<Body> = (props: Body) => {
             <div className={'all-filter-container'}>
                 <FilterComponent displayStatus={DisplayStatus.All} count={2} />
             </div>
-            <div className={'reminders-container'}>
+            <div className={'personal-list-container'}>
                 <span>My List</span>
-                <div>{getPersonalListTitles()}</div>
+                <div className={'personal-list-collection'}>
+                    {getPersonalListTitles()}
+                </div>
             </div>
             <div className={'add-list-button-container'}></div>
         </div>

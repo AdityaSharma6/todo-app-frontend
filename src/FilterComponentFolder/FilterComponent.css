@@ -61,7 +61,7 @@
     background-color: var(--orange);
 }
 
-.filter-information-container:focus {
+.filter-information-container:hover {
     outline: none;
     background-color: var(--light-blue);
 }
