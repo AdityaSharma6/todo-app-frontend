@@ -59,7 +59,11 @@ var dummyBody: Body = {
 function App() {
     return (
         <div className={'todo-list-container'}>
-            <NavComponent />
+            <NavComponent
+                displayStatus={dummyBody.displayStatus}
+                lists={dummyBody.lists}
+                personalListName={dummyBody.personalListName}
+            />
             <BodyComponent
                 displayStatus={dummyBody.displayStatus}
                 lists={dummyBody.lists}

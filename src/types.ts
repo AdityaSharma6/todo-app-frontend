@@ -25,7 +25,12 @@ export enum DisplayStatus {
 }
 
 export type Body = {
-    displayStatus: DisplayStatus;
-    personalListName?: string;
-    lists: List[];
+    displayStatus: DisplayStatus,
+    personalListName?: string,
+    lists: List[]
+}
+
+export type Filter = {
+    displayStatus: DisplayStatus,
+    count: number,
 }
