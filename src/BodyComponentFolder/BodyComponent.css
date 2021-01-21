@@ -61,3 +61,7 @@
     color: var(--super-light-grey);
     outline: none;
 }
+
+.list-collection-container {
+    overflow-y: scroll;
+}

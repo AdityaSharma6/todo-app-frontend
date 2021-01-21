@@ -103,7 +103,10 @@ export const BodyComponent: FunctionComponent<Body> = (props: Body) => {
                 {displayStatus()}
             </div>
             {countCompleted(getListsToDisplay())}
-            {accumulateLists()}
+            <div className={'list-collection-container'}>
+                {accumulateLists()}
+            </div>
+            
         </div>
     );
 };

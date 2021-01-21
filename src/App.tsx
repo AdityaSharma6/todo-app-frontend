@@ -37,7 +37,7 @@ var dummyItem3: Item = {
 var dummyList: List = {
     title: 'First Title',
     creationDate: Date().toString(),
-    items: [dummyItem1, dummyItem2, dummyItem3, dummyItem3],
+    items: [dummyItem1, dummyItem2, dummyItem3, dummyItem3, dummyItem2, dummyItem1, dummyItem3, dummyItem2],
     displayStatus: DisplayStatus.All,
 };
 
@@ -48,7 +48,14 @@ var dummyList2: List = {
     displayStatus: DisplayStatus.All,
 };
 
-var dummyLists: List[] = [dummyList, dummyList2];
+var dummyList3: List = {
+    title: 'Third Title',
+    creationDate: Date().toString(),
+    items: [dummyItem3, dummyItem2, dummyItem1],
+    displayStatus: DisplayStatus.All,
+};
+
+var dummyLists: List[] = [dummyList, dummyList2, dummyList3, dummyList3, dummyList, dummyList2, dummyList3, dummyList3];
 
 var dummyBody: Body = {
     displayStatus: DisplayStatus.All,
