@@ -29,7 +29,7 @@ export enum DisplayStatus {
 export type Body = {
     displayStatus: DisplayStatus,
     personalListName?: string,
-    lists: List[] 
+    lists: List[]
 }
 
 export type Nav = {
