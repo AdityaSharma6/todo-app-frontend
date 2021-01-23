@@ -17,6 +17,12 @@ export const BodyComponent: FunctionComponent<Body> = (props: Body) => {
                     {DisplayStatus[DisplayStatus.All]}
                 </div>
             );
+        } else if (props.displayStatus === DisplayStatus.Today) {
+            return (
+                <div className={'default-display-status'}>
+                    {DisplayStatus[DisplayStatus.Today]}
+                </div>
+            );
         } else {
             return (
                 <div className={'default-display-status'}>
@@ -61,52 +67,101 @@ export const BodyComponent: FunctionComponent<Body> = (props: Body) => {
             });
             return selectedList;
         } else if (props.displayStatus === DisplayStatus.Scheduled) {
-            return [];
+            let scheduledList: List[] = [];
+            // for (let i = 0; i < props.lists.length; i++) {
+            //     const list = props.lists[i];
+            //     for (let j = 0; j < list.items.length; j++) {
+            //         const item = list.items[j];
+            //         if (item.dueDate) {
+            //             const index = scheduledList.findIndex(
+            //                 value => value.title === item.dueDate
+            //             );
+            //             if (index > 0) {
+            //                 scheduledList[index].items.push(item);
+            //             } else {
+            //                 let newListOfCurrentDueDate: List = {
+            //                     title: item.dueDate,
+            //                     creationDate: list.creationDate,
+            //                     items: [],
+            //                     displayStatus: list.displayStatus,
+            //                 };
+            //                 newListOfCurrentDueDate.items.push(item);
+            //                 scheduledList.push(newListOfCurrentDueDate);
+            //             }
+            //         }
+            //     }
+            // }
+            return scheduledList;
         } else {
+            // let todayList: List[];
+            // let today: List;
+            // for (let i = 0; i < props.lists.length; i++){
+            //     const list = props.lists[i];
+            //     for (let j = 0; j < list.items.length; j++){
+            //         const item = list.items[j];
+            //         if (item.dueDate === Date().toString()){
+            //             todayList.push(
+            //                 {
+            //                     creationDate: Date().toString();
+            //                     title: ''
+            //                 }
+            //             )
+            //         }
+            //     }
+            // }
             return [];
         }
     };
 
-    const accumulateLists = () => {
-        if (props.displayStatus === DisplayStatus.All) {
-            const allLists = props.lists.map((value, index) => {
-                return (
-                    <ListComponent
-                        title={props.lists[index].title}
-                        items={props.lists[index].items}
-                        creationDate={props.lists[index].creationDate}
-                        displayStatus={props.displayStatus}
-                    />
-                );
-            });
-            return allLists;
-        } else if (props.displayStatus === DisplayStatus.PersonalLists) {
-            const list = props.lists.filter(value => {
-                return value.title === props.personalListName;
-            });
+    const accumulateLists = (lists: List[]) => {
+        return lists.map((value, index) => {
             return (
                 <ListComponent
-                    title={list[0].title}
-                    items={list[0].items}
-                    creationDate={list[0].creationDate}
+                    title={lists[index].title}
+                    items={lists[index].items}
+                    creationDate={lists[index].creationDate}
                     displayStatus={props.displayStatus}
                 />
             );
-        } else {
-            return;
-        }
+        });
+
+        // if (props.displayStatus === DisplayStatus.All) {
+        //     const allLists = props.lists.map((value, index) => {
+        //         return (
+        //             <ListComponent
+        //                 title={props.lists[index].title}
+        //                 items={props.lists[index].items}
+        //                 creationDate={props.lists[index].creationDate}
+        //                 displayStatus={props.displayStatus}
+        //             />
+        //         );
+        //     });
+        //     return allLists;
+        // } else if (props.displayStatus === DisplayStatus.PersonalLists) {
+        //     const list = props.lists.filter(value => {
+        //         return value.title === props.personalListName;
+        //     });
+        //     return (
+        //         <ListComponent
+        //             title={list[0].title}
+        //             items={list[0].items}
+        //             creationDate={list[0].creationDate}
+        //             displayStatus={props.displayStatus}
+        //         />
+        //     );
+        // } else {
+        //     return;
+        // }
     };
 
+    const lists = accumulateLists(getListsToDisplay());
     return (
         <div className={'todo-body-container'}>
             <div className={'todo-display-status-container'}>
                 {displayStatus()}
             </div>
             {countCompleted(getListsToDisplay())}
-            <div className={'list-collection-container'}>
-                {accumulateLists()}
-            </div>
-            
+            <div className={'list-collection-container'}>{lists}</div>
         </div>
     );
 };

@@ -1,3 +1,5 @@
+import Fuse from 'fuse.js';
+
 export type Item = {
     // Location?
     _id: string,
@@ -5,7 +7,7 @@ export type Item = {
     title: string,
     description?: string,
     creationDate: string,
-    dueDate: string,
+    dueDate?: string,
     completedStatus: boolean
 };
 
@@ -27,7 +29,17 @@ export enum DisplayStatus {
 export type Body = {
     displayStatus: DisplayStatus,
     personalListName?: string,
-    lists: List[]
+    lists: List[] 
+}
+
+export type Nav = {
+    displayStatus: DisplayStatus,
+    lists: List[],
+    personalListName?: string,
+    searchText: string,
+    setSearchText: (newSearchText: string) => void,
+    setDisplayStatus: (selectedDisplayStatus: DisplayStatus) => void,
+    setPersonalListName: (selectedPersonalListName: string) => void
 }
 
 export type Filter = {

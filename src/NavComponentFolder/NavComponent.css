@@ -19,7 +19,7 @@
         'today scheduled'
         'all-notifs all-notifs'
         'reminders reminders'
-        'add-list add-list';
+        'add-list .';
     padding: 50px 8px 5px 8px;
     column-gap: 3%;
     row-gap: 3%;
@@ -58,7 +58,7 @@
 .personal-list-collection {
     display: flex;
     flex-direction: column;
-    justify-content: start;
+    justify-content: flex-start;
     align-items: flex-start;
     overflow-y: scroll;
     height: 90%;
@@ -91,7 +91,7 @@
 
 .personal-list-title-value {
     grid-area: title;
-    justify-self: start;
+    justify-self: flex-start;
     align-self: center;
 }
 
@@ -103,7 +103,21 @@
 
 .add-list-button-container {
     grid-area: add-list;
-    background-color: orange;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    padding-left: 13px;
+    width: 63%;
+}
+
+.add-list-button-fontawesome-icon {
+    margin-right: 10px;
+    color: var(--super-light-grey);
+}
+
+.add-list-button-name {
+    color: var(--super-light-grey);
 }
 @media (max-width: 850px), (max-height: 700px) {
     .todo-navbar-container {

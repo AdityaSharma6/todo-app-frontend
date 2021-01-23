@@ -7,13 +7,14 @@ import {
     faClock,
     faGlobeAmericas,
     faListUl,
+    faPlusCircle,
 } from '@fortawesome/free-solid-svg-icons';
 
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
-library.add(faCalendarAlt, faClock, faGlobeAmericas, faListUl);
+library.add(faCalendarAlt, faClock, faGlobeAmericas, faListUl, faPlusCircle);
 
 ReactDOM.render(
     <React.StrictMode>
