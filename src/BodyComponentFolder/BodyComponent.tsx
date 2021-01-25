@@ -1,6 +1,6 @@
 import { FunctionComponent, useState } from 'react';
 import { ListComponent } from '../ListComponentFolder/ListComponent';
-import { Body, DisplayStatus, List } from '../types';
+import { Body, DisplayStatus, Item } from '../types';
 import './BodyComponent.css';
 
 export const BodyComponent: FunctionComponent<Body> = (props: Body) => {
@@ -65,47 +65,53 @@ export const BodyComponent: FunctionComponent<Body> = (props: Body) => {
     };
 
     const accumulateLists = () => {
-        return props.lists.map((value, index) => {
-            return (
-                <ListComponent
-                    key={props.lists[index].title}
-                    title={props.lists[index].title}
-                    items={props.lists[index].items}
-                    creationDate={props.lists[index].creationDate}
-                    displayStatus={props.displayStatus}
-                    showCompletedItems={showCompletedItemsState}
-                />
-            );
-        });
-    };
+        if (props.displayStatus === DisplayStatus.Scheduled) {
+            let arrayOfAllItems: Item[] = [];
+            props.lists.map(value => arrayOfAllItems.push(...value.items));
 
-    // if (props.displayStatus === DisplayStatus.All) {
-    //     const allLists = props.lists.map((value, index) => {
-    //         return (
-    //             <ListComponent
-    //                 title={props.lists[index].title}
-    //                 items={props.lists[index].items}
-    //                 creationDate={props.lists[index].creationDate}
-    //                 displayStatus={props.displayStatus}
-    //             />
-    //         );
-    //     });
-    //     return allLists;
-    // } else if (props.displayStatus === DisplayStatus.PersonalLists) {
-    //     const list = props.lists.filter(value => {
-    //         return value.title === props.personalListName;
-    //     });
-    //     return (
-    //         <ListComponent
-    //             title={list[0].title}
-    //             items={list[0].items}
-    //             creationDate={list[0].creationDate}
-    //             displayStatus={props.displayStatus}
-    //         />
-    //     );
-    // } else {
-    //     return;
-    // }
+            let hashtable: { [key: string]: Item[] } = {};
+            for (let i = 0; i < arrayOfAllItems.length; i++) {
+                let item = arrayOfAllItems[i];
+                let key = item.dueDate;
+
+                if (key && !hashtable[key]) {
+                    hashtable[key] = [];
+                    hashtable[key].push(item);
+                }
+                if (key && hashtable[key]) {
+                    hashtable[key].push(item);
+                } else {
+                    continue;
+                }
+            }
+            let render = [];
+            for (const [key, value] of Object.entries(hashtable)) {
+                render.push(
+                    <ListComponent
+                        key={key}
+                        title={key}
+                        items={value}
+                        displayStatus={props.displayStatus}
+                        showCompletedItems={showCompletedItemsState}
+                    />
+                );
+            }
+            return render;
+        } else {
+            return props.lists.map((value, index) => {
+                return (
+                    <ListComponent
+                        key={props.lists[index].title}
+                        title={props.lists[index].title}
+                        items={props.lists[index].items}
+                        creationDate={props.lists[index].creationDate}
+                        displayStatus={props.displayStatus}
+                        showCompletedItems={showCompletedItemsState}
+                    />
+                );
+            });
+        }
+    };
 
     const lists = accumulateLists();
     return (

@@ -13,7 +13,7 @@ export type Item = {
 
 export type List = {
     title: string,
-    creationDate: string,
+    creationDate?: string,
     items: Item[],
     displayStatus: DisplayStatus,
     showCompletedItems: boolean

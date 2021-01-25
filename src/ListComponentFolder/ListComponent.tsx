@@ -27,9 +27,9 @@ export const ListComponent: FunctionComponent<List> = (props: List) => {
         }
         itemArray.push(
             <ItemComponent
-                key={'New Key'}
-                _id={'New _id'}
-                listId={'New List Id'}
+                key={`${itemArray.length} key`}
+                _id={`${itemArray.length} item id`}
+                listId={`${itemArray.length} list id`}
                 title={'Add New Item'}
                 completedStatus={false}
                 showCompletedItems={props.showCompletedItems}
@@ -44,6 +44,13 @@ export const ListComponent: FunctionComponent<List> = (props: List) => {
         return (
             <div className={'list-container'}>
                 <span className={'list-title-all'}>{props.title}</span>
+                {items}
+            </div>
+        );
+    } else if (props.displayStatus === DisplayStatus.Scheduled) {
+        return (
+            <div className={'list-container'}>
+                <span className={'list-title-scheduled'}>Due {props.title}</span>
                 {items}
             </div>
         );

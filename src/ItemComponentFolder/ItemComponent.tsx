@@ -43,7 +43,7 @@ export const ItemComponent: FunctionComponent<Item> = (props: Item) => {
                 type={'checkbox'}
                 className={`${props._id}-checkbox`}
                 checked={itemCompletedStatusState}
-                onClick={() => setCompletedStatus(!itemCompletedStatusState)}
+                onChange={() => setCompletedStatus(!itemCompletedStatusState)}
             />
             <div className={'item-component-information-container'}>
                 <input

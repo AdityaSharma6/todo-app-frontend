@@ -20,3 +20,9 @@
     margin-bottom: 10px;
     font-size: x-large;
 }
+
+.list-title-scheduled {
+    color: var(--orange);
+    margin-bottom: 10px;
+    font-size: x-large;
+}
