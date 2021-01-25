@@ -1,7 +1,7 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { FunctionComponent, useState } from 'react';
 import { FilterComponent } from '../FilterComponentFolder/FilterComponent';
-import { Body, DisplayStatus, Nav } from '../types';
+import { DisplayStatus, Nav } from '../types';
 import { countItems } from '../Utils/countItems';
 import './NavComponent.css';
 
@@ -18,7 +18,7 @@ export const NavComponent: FunctionComponent<Nav> = (props: Nav) => {
                 />
                 <div className={'personal-list-title-value'}>{value.title}</div>
                 <div className={'personal-list-title-count'}>
-                    {countItems(true, value.items)}
+                    {countItems(false, value.items)}
                 </div>
             </div>
         );

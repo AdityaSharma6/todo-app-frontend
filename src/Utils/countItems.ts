@@ -1,4 +1,4 @@
-import { Item, List } from "../types";
+import { Item } from "../types";
 
 export const countItems = (requiredCompletedStatus: boolean, listOfItems: Item[]):number => {
     let count: number = 0;

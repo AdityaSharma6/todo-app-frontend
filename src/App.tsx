@@ -70,12 +70,13 @@ function App() {
     if (!results) {
         lists = dummyBody.lists;
     } else {
-        for (let i = 0; i < results.length; i++) {           
+        for (let i = 0; i < results.length; i++) {
             const list = {
                 title: results[i].item.title,
                 creationDate: results[i].item.creationDate,
                 displayStatus: results[i].item.displayStatus,
                 items: results[i].item.items,
+                showCompletedItems: true,
             };
             lists.push(list);
         }

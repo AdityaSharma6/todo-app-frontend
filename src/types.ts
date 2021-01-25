@@ -1,4 +1,3 @@
-import Fuse from 'fuse.js';
 
 export type Item = {
     // Location?
@@ -6,16 +5,18 @@ export type Item = {
     listId: string,
     title: string,
     description?: string,
-    creationDate: string,
+    creationDate?: string,
     dueDate?: string,
     completedStatus: boolean
+    showCompletedItems: boolean
 };
 
 export type List = {
     title: string,
     creationDate: string,
     items: Item[],
-    displayStatus: DisplayStatus
+    displayStatus: DisplayStatus,
+    showCompletedItems: boolean
 }
 
 

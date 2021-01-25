@@ -20,6 +20,20 @@
     border-bottom: 1px solid var(--custom-white);
 }
 
+.item-component-container-completed {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    flex-wrap: nowrap;
+
+    padding-bottom: 5px;
+    margin-bottom: 10px;
+    border-bottom: 1px solid var(--custom-white);
+    opacity: 0.3;
+}
+
 input[type='checkbox'] {
     background-color: var(--dark-grey);
     border: 1px solid var(--custom-white);

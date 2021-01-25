@@ -1,5 +1,4 @@
 import { Body, DisplayStatus, Item, List } from "../types";
-import Fuse from 'fuse.js';
 
 const getDate = () => {
     const dateObj = new Date();
@@ -13,7 +12,8 @@ var dummyItem1: Item = {
     description: 'This will be on a saturday.',
     creationDate: getDate(),
     dueDate: getDate(),
-    completedStatus: true,
+    completedStatus: false,
+    showCompletedItems: true
 };
 
 var dummyItem2: Item = {
@@ -22,7 +22,8 @@ var dummyItem2: Item = {
     title: '3 Lectures to take notes from',
     creationDate: getDate(),
     dueDate: getDate(),
-    completedStatus: true,
+    completedStatus: false,
+    showCompletedItems: true
 };
 
 var dummyItem3: Item = {
@@ -34,6 +35,7 @@ var dummyItem3: Item = {
         creationDate: getDate(),
         dueDate: getDate(),
     completedStatus: true,
+    showCompletedItems: true
 };
 
 var dummyItem4: Item = {
@@ -43,6 +45,7 @@ var dummyItem4: Item = {
         creationDate: getDate(),
         dueDate: getDate(),
     completedStatus: true,
+    showCompletedItems: true
 };
 
 var dummyItem5: Item = {
@@ -52,6 +55,7 @@ var dummyItem5: Item = {
         creationDate: getDate(),
         dueDate: getDate(),
     completedStatus: true,
+    showCompletedItems: true
 };
 
 var dummyList: List = {
@@ -59,6 +63,7 @@ var dummyList: List = {
     creationDate: getDate(),
     items: [dummyItem1, dummyItem4],
     displayStatus: DisplayStatus.All,
+    showCompletedItems: true
 };
 
 var dummyList2: List = {
@@ -66,13 +71,15 @@ var dummyList2: List = {
     creationDate: getDate(),
     items: [dummyItem2, dummyItem5],
     displayStatus: DisplayStatus.All,
+    showCompletedItems: true
 };
 
 var dummyList3: List = {
     title: '3OO3',
     creationDate: getDate(),
-    items: [dummyItem3],
+    items: [dummyItem3, dummyItem5],
     displayStatus: DisplayStatus.All,
+    showCompletedItems: true
 };
 
 var dummyLists: List[] = [

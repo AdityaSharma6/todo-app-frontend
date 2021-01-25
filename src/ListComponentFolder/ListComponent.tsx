@@ -4,18 +4,41 @@ import { DisplayStatus, List } from '../types';
 import './ListComponent.css';
 
 export const ListComponent: FunctionComponent<List> = (props: List) => {
-    const items = props.items.map(item => (
-        <ItemComponent
-            key={item._id}
-            _id={item._id}
-            listId={item.listId}
-            title={item.title}
-            description={item.description}
-            creationDate={item.creationDate}
-            dueDate={item.dueDate}
-            completedStatus={item.completedStatus}
-        />
-    ));
+    const generateItemsArray = () => {
+        let itemArray = [];
+        for (let i = 0; i < props.items.length; i++) {
+            if (!props.showCompletedItems && props.items[i].completedStatus) {
+                continue;
+            } else {
+                itemArray.push(
+                    <ItemComponent
+                        key={props.items[i]._id}
+                        _id={props.items[i]._id}
+                        listId={props.items[i].listId}
+                        title={props.items[i].title}
+                        description={props.items[i].description}
+                        creationDate={props.items[i].creationDate}
+                        dueDate={props.items[i].dueDate}
+                        completedStatus={props.items[i].completedStatus}
+                        showCompletedItems={props.showCompletedItems}
+                    />
+                );
+            }
+        }
+        itemArray.push(
+            <ItemComponent
+                key={'New Key'}
+                _id={'New _id'}
+                listId={'New List Id'}
+                title={'Add New Item'}
+                completedStatus={false}
+                showCompletedItems={props.showCompletedItems}
+            />
+        );
+        return itemArray;
+    };
+
+    const items = generateItemsArray();
 
     if (props.displayStatus === DisplayStatus.All) {
         return (

@@ -1,9 +1,13 @@
-import { FunctionComponent } from 'react';
+import { FunctionComponent, useState } from 'react';
 import { ListComponent } from '../ListComponentFolder/ListComponent';
 import { Body, DisplayStatus, List } from '../types';
 import './BodyComponent.css';
-import Fuse from 'fuse.js';
+
 export const BodyComponent: FunctionComponent<Body> = (props: Body) => {
+    const [showCompletedItemsState, setShowCompletedItemsState] = useState(
+        false
+    );
+
     const displayStatus = () => {
         if (props.displayStatus === DisplayStatus.Scheduled) {
             return (
@@ -32,32 +36,6 @@ export const BodyComponent: FunctionComponent<Body> = (props: Body) => {
         }
     };
 
-    // const countCompleted = (lists: List[]) => {
-    //     let count = 0;
-    //     for (let i: number = 0; i < lists.length; i++) {
-    //         const list: List = lists[i];
-    //         for (let j: number = 0; j < list.items.length; j++) {
-    //             const item = list.items[j];
-    //             if (item.completedStatus) {
-    //                 count++;
-    //             }
-    //         }
-    //     }
-
-    //     if (count) {
-    //         return (
-    //             <div className={'todo-completed-status-container'}>
-    //                 <div className={'todo-completed-status-value'}>
-    //                     {count} Completed
-    //                 </div>
-    //                 <button className={'show-completed-button'}>Show</button>
-    //             </div>
-    //         );
-    //     } else {
-    //         return;
-    //     }
-    // };
-
     const countCompleted = () => {
         let count = props.lists.reduce((prevList, currList) => {
             let value = currList.items.reduce((prevItem, currItem) => {
@@ -72,7 +50,13 @@ export const BodyComponent: FunctionComponent<Body> = (props: Body) => {
                     <div className={'todo-completed-status-value'}>
                         {count} Completed
                     </div>
-                    <button className={'show-completed-button'}>Show</button>
+                    <button
+                        className={'show-completed-button'}
+                        onClick={() =>
+                            setShowCompletedItemsState(!showCompletedItemsState)
+                        }>
+                        {showCompletedItemsState ? 'Hide' : 'Show'}
+                    </button>
                 </div>
             );
         } else {
@@ -89,6 +73,7 @@ export const BodyComponent: FunctionComponent<Body> = (props: Body) => {
                     items={props.lists[index].items}
                     creationDate={props.lists[index].creationDate}
                     displayStatus={props.displayStatus}
+                    showCompletedItems={showCompletedItemsState}
                 />
             );
         });
