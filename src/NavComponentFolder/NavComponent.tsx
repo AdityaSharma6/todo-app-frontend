@@ -33,7 +33,8 @@ export const NavComponent: FunctionComponent<Nav> = (props: Nav) => {
             let item = props.lists[i].items[j];
             if (item.dueDate && !item.completedStatus) scheduledCount++;
 
-            if (item.dueDate === getDate() && !item.completedStatus) todayCount++;
+            if (item.dueDate === getDate() && !item.completedStatus)
+                todayCount++;
 
             if (!item.completedStatus) allCount++;
         }

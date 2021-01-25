@@ -77,8 +77,7 @@ export const BodyComponent: FunctionComponent<Body> = (props: Body) => {
                 if (key && !hashtable[key]) {
                     hashtable[key] = [];
                     hashtable[key].push(item);
-                }
-                if (key && hashtable[key]) {
+                } else if (key && hashtable[key]) {
                     hashtable[key].push(item);
                 } else {
                     continue;

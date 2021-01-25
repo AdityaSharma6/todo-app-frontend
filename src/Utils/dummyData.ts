@@ -7,7 +7,7 @@ var dummyItem1: Item = {
     title: '1A03 Quiz on Feburary 2nd',
     description: 'This will be on a saturday.',
     creationDate: getDate(),
-    dueDate: getDate(),
+    dueDate: '2021/1/24',
     completedStatus: false,
     showCompletedItems: true
 };
@@ -49,7 +49,7 @@ var dummyItem5: Item = {
     listId: 'list2.id',
     title: '2GA4 Tutorial was useless',
         creationDate: getDate(),
-        dueDate: getDate(),
+        dueDate: '2021/1/27',
     completedStatus: true,
     showCompletedItems: true
 };
