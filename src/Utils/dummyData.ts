@@ -1,10 +1,5 @@
 import { Body, DisplayStatus, Item, List } from "../types";
-
-const getDate = () => {
-    const dateObj = new Date();
-    const randomNumber = Math.floor(Math.random() * 3);
-    return (dateObj.getUTCFullYear()) + "/" + (dateObj.getMonth() + 1)+ "/" + (randomNumber);
-}
+import {getDate} from './getDate';
 
 var dummyItem1: Item = {
     _id: 'item1.id',

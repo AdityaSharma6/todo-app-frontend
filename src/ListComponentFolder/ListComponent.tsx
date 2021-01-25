@@ -50,7 +50,9 @@ export const ListComponent: FunctionComponent<List> = (props: List) => {
     } else if (props.displayStatus === DisplayStatus.Scheduled) {
         return (
             <div className={'list-container'}>
-                <span className={'list-title-scheduled'}>Due {props.title}</span>
+                <span className={'list-title-scheduled'}>
+                    Due {props.title}
+                </span>
                 {items}
             </div>
         );
