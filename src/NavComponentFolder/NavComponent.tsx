@@ -1,5 +1,5 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { FunctionComponent, useState } from 'react';
+import { FunctionComponent } from 'react';
 import { FilterComponent } from '../FilterComponentFolder/FilterComponent';
 import { DisplayStatus, Nav } from '../types';
 import { countItems } from '../Utils/countItems';
@@ -7,19 +7,19 @@ import { getDate } from '../Utils/getDate';
 import './NavComponent.css';
 
 export const NavComponent: FunctionComponent<Nav> = (props: Nav) => {
-    const personalListTitles = props.lists.map(value => {
+    const personalListTitles = props.lists.map(list => {
         return (
             <div
                 className={'personal-list-title-container'}
-                key={value.title}
-                onClick={() => props.setPersonalListName(value.title)}>
+                key={list.title}
+                onClick={() => props.setPersonalListName(list.title)}>
                 <FontAwesomeIcon
                     icon={'list-ul'}
                     className={'personal-list-title-icon'}
                 />
-                <div className={'personal-list-title-value'}>{value.title}</div>
+                <div className={'personal-list-title-value'}>{list.title}</div>
                 <div className={'personal-list-title-count'}>
-                    {countItems(false, value.items)}
+                    {countItems(false, list.items)}
                 </div>
             </div>
         );
@@ -40,6 +40,12 @@ export const NavComponent: FunctionComponent<Nav> = (props: Nav) => {
         }
     }
 
+    const updateDisplayStatusHandler = (newDisplayStatus: DisplayStatus) => {
+        if (newDisplayStatus != DisplayStatus.PersonalLists)
+            props.setPersonalListName('');
+        props.setDisplayStatus(newDisplayStatus);
+    };
+
     return (
         <div className={'todo-navbar-container'}>
             <div className={'searchbox-container'}>
@@ -49,12 +55,14 @@ export const NavComponent: FunctionComponent<Nav> = (props: Nav) => {
                     className={'searchbox'}
                     value={props.searchText}
                     onChange={event => props.setSearchText(event.target.value)}
-                    onClick={() => props.setDisplayStatus(DisplayStatus.All)}
+                    onClick={() =>
+                        updateDisplayStatusHandler(DisplayStatus.All)
+                    }
                 />
             </div>
             <div
                 className={'today-filter-container'}
-                onClick={() => props.setDisplayStatus(DisplayStatus.Today)}>
+                onClick={() => updateDisplayStatusHandler(DisplayStatus.Today)}>
                 <FilterComponent
                     displayStatus={DisplayStatus.Today}
                     count={todayCount}
@@ -62,8 +70,8 @@ export const NavComponent: FunctionComponent<Nav> = (props: Nav) => {
             </div>
             <div
                 className={'scheduled-filter-container'}
-                onClick={event =>
-                    props.setDisplayStatus(DisplayStatus.Scheduled)
+                onClick={() =>
+                    updateDisplayStatusHandler(DisplayStatus.Scheduled)
                 }>
                 <FilterComponent
                     displayStatus={DisplayStatus.Scheduled}
@@ -72,7 +80,7 @@ export const NavComponent: FunctionComponent<Nav> = (props: Nav) => {
             </div>
             <div
                 className={'all-filter-container'}
-                onClick={event => props.setDisplayStatus(DisplayStatus.All)}>
+                onClick={() => updateDisplayStatusHandler(DisplayStatus.All)}>
                 <FilterComponent
                     displayStatus={DisplayStatus.All}
                     count={allCount}
@@ -80,7 +88,7 @@ export const NavComponent: FunctionComponent<Nav> = (props: Nav) => {
             </div>
             <div
                 className={'personal-list-container'}
-                onClick={event =>
+                onClick={() =>
                     props.setDisplayStatus(DisplayStatus.PersonalLists)
                 }>
                 <span>My List</span>
@@ -93,7 +101,7 @@ export const NavComponent: FunctionComponent<Nav> = (props: Nav) => {
                     icon={'plus-circle'}
                     className={'add-list-button-fontawesome-icon'}
                 />
-                <span className={'add-list-button-name'}>Add List</span>
+                <button className={'add-list-button-name'}>Add List</button>
             </div>
         </div>
     );
