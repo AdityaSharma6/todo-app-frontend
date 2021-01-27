@@ -7,6 +7,28 @@ export const BodyComponent: FunctionComponent<Body> = (props: Body) => {
     const [showCompletedItemsState, setShowCompletedItemsState] = useState(
         false
     );
+    const [arrayOfListComponentState, setArrayOfListComponentState] = useState(
+        props.lists
+    );
+    // console.log(props.lists, 'vs', arrayOfListComponentState);
+
+    const setUpdatedItemState = (updatedItem: Item) => {
+        console.log('updatingItemsArray');
+        // let updatedArray = arrayOfListComponentState;
+        // for (let i = 0; i < updatedArray.length; i++) {
+        //     for (let j = 0; j < updatedArray[i].items.length; j++) {
+        //         let item = updatedArray[i].items[j];
+        //         if (item._id === updatedItem._id) {
+        //             console.log('here');
+        //             console.log(updatedArray[i].items[j]);
+        //             updatedArray[i].items[j] = updatedItem;
+        //             console.log(updatedArray[i].items[j]);
+        //             break;
+        //         }
+        //     }
+        // }
+        // setArrayOfListComponentState(updatedArray);
+    };
 
     const displayStatus = () => {
         if (props.displayStatus === DisplayStatus.Scheduled) {
@@ -37,12 +59,12 @@ export const BodyComponent: FunctionComponent<Body> = (props: Body) => {
     };
 
     const countCompleted = () => {
-        let count = props.lists.reduce((prevList, currList) => {
-            let value = currList.items.reduce((prevItem, currItem) => {
-                return currItem.completedStatus ? prevItem + 1 : 0;
-            }, 0);
-            return prevList + value;
-        }, 0);
+        let count = 0;
+        for (let i = 0; i < arrayOfListComponentState.length; i++){
+            for (let j = 0; j < arrayOfListComponentState[i].items.length; j++){
+                if (arrayOfListComponentState[i].items[j].completedStatus) count++;
+            }
+        }
 
         if (count) {
             return (
@@ -67,7 +89,9 @@ export const BodyComponent: FunctionComponent<Body> = (props: Body) => {
     const accumulateLists = () => {
         if (props.displayStatus === DisplayStatus.Scheduled) {
             let arrayOfAllItems: Item[] = [];
-            props.lists.map(value => arrayOfAllItems.push(...value.items));
+            arrayOfListComponentState.map(value =>
+                arrayOfAllItems.push(...value.items)
+            );
 
             let hashtable: { [key: string]: Item[] } = {};
             for (let i = 0; i < arrayOfAllItems.length; i++) {
@@ -92,20 +116,24 @@ export const BodyComponent: FunctionComponent<Body> = (props: Body) => {
                         items={value}
                         displayStatus={props.displayStatus}
                         showCompletedItems={showCompletedItemsState}
+                        onItemUpdate={setUpdatedItemState}
                     />
                 );
             }
             return render;
         } else {
-            return props.lists.map((value, index) => {
+            return arrayOfListComponentState.map((value, index) => {
                 return (
                     <ListComponent
-                        key={props.lists[index].title}
-                        title={props.lists[index].title}
-                        items={props.lists[index].items}
-                        creationDate={props.lists[index].creationDate}
+                        key={arrayOfListComponentState[index].title}
+                        title={arrayOfListComponentState[index].title}
+                        items={arrayOfListComponentState[index].items}
+                        creationDate={
+                            arrayOfListComponentState[index].creationDate
+                        }
                         displayStatus={props.displayStatus}
                         showCompletedItems={showCompletedItemsState}
+                        onItemUpdate={setUpdatedItemState}
                     />
                 );
             });
