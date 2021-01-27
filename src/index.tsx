@@ -3,18 +3,14 @@ import ReactDOM from 'react-dom';
 
 import { library } from '@fortawesome/fontawesome-svg-core';
 import {
-    faCalendarAlt,
-    faClock,
-    faGlobeAmericas,
-    faListUl,
-    faPlusCircle,
+    faListUl
 } from '@fortawesome/free-solid-svg-icons';
 
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
-library.add(faCalendarAlt, faClock, faGlobeAmericas, faListUl, faPlusCircle);
+library.add(faListUl);
 
 ReactDOM.render(
     <React.StrictMode>
