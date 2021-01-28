@@ -5,6 +5,7 @@ export type TodoItemType = {
     description?: string;
     creationDate: string;
     dueDate?: string;
+    isComplete: boolean;
 };
 
 export type TodoListType = {
