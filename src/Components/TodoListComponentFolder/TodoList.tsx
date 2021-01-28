@@ -1,6 +1,5 @@
 import { FunctionComponent, useState } from 'react';
 import { ITodoListProps } from '../../props';
-import { TodoItemType } from '../../types';
 import { TodoItem } from '../TodoItemComponentFolder/TodoItem';
 import './TodoList.css';
 
@@ -8,6 +7,7 @@ export const TodoList: FunctionComponent<ITodoListProps> = (props: ITodoListProp
     const [todoItemsCollection, setTodoItemsCollection] = useState(props.todoItemsCollection);
 
     const updateTodoItemTitle = (updatedTodoItemId: string, updatedTodoItemTitle: string) => {
+        // API Request to update TodoItem in DB goes HERE
         setTodoItemsCollection(
             todoItemsCollection.map(todoItem => {
                 if (todoItem._id === updatedTodoItemId) {
@@ -22,12 +22,10 @@ export const TodoList: FunctionComponent<ITodoListProps> = (props: ITodoListProp
         updatedTodoItemId: string,
         updatedTodoItemCompletionStatus: boolean
     ) => {
+        // API Request to update TodoItem in DB goes HERE
         setTodoItemsCollection(
-            todoItemsCollection.map(todoItem => {
-                if (todoItem._id === updatedTodoItemId) {
-                    todoItem.isComplete = updatedTodoItemCompletionStatus;
-                }
-                return todoItem;
+            todoItemsCollection.filter(todoItem => {
+                return todoItem._id !== updatedTodoItemId;
             })
         );
     };
@@ -37,14 +35,11 @@ export const TodoList: FunctionComponent<ITodoListProps> = (props: ITodoListProp
     - Count of Completed TodoItems within the TodoList
     - List of TodoItems
     */
-    console.log(todoItemsCollection);
     return (
         <div className='root-body-container'>
             <div className='todolist-information-container'>
                 <div className='todolist-title'>{props.title}</div>
-                <div className='todolist-uncompleted-item-count'>
-                    {props.todoItemsCollection.length}
-                </div>
+                <div className='todolist-uncompleted-item-count'>{todoItemsCollection.length}</div>
             </div>
             <div className='todolist-todoitem-collection-container'>
                 {todoItemsCollection.map(todoItem => {

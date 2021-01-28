@@ -30,23 +30,11 @@ var dataList1: TodoListType = {
     _id: 'list1',
     title: '1A03 List Title',
     creationDate: '2020/05/22',
-    todoItemsCollection: [
-        dataItem1,
-        dataItem2,
-        dataItem3,
-        dataItem1,
-        dataItem2,
-        dataItem3,
-        dataItem1,
-        dataItem2,
-        dataItem3,
-        dataItem1,
-        dataItem2,
-        dataItem3,
-    ],
+    todoItemsCollection: [dataItem1, dataItem2, dataItem3],
 };
 
 function App() {
+    // API Request to GET all todoItems of a particular list
     return (
         <div className='root-container'>
             <TodoList
