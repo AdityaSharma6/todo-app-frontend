@@ -7,6 +7,7 @@ var dataItem1: TodoItemType = {
     listId: 'kladsfj',
     title: '1A03 Task 1',
     creationDate: '2020/05/23',
+    isComplete: false,
 };
 
 var dataItem2: TodoItemType = {
@@ -14,6 +15,7 @@ var dataItem2: TodoItemType = {
     listId: 'kladsfj',
     title: '1A03 Task 2',
     creationDate: '2020/05/23',
+    isComplete: false,
 };
 
 var dataItem3: TodoItemType = {
@@ -21,13 +23,27 @@ var dataItem3: TodoItemType = {
     listId: 'kladsfj',
     title: '1A03 Task 3',
     creationDate: '2020/05/23',
+    isComplete: false,
 };
 
 var dataList1: TodoListType = {
     _id: 'list1',
     title: '1A03 List Title',
     creationDate: '2020/05/22',
-    todoItemsCollection: [dataItem1, dataItem2, dataItem3],
+    todoItemsCollection: [
+        dataItem1,
+        dataItem2,
+        dataItem3,
+        dataItem1,
+        dataItem2,
+        dataItem3,
+        dataItem1,
+        dataItem2,
+        dataItem3,
+        dataItem1,
+        dataItem2,
+        dataItem3,
+    ],
 };
 
 function App() {
