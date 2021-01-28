@@ -2,9 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 
 import { library } from '@fortawesome/fontawesome-svg-core';
-import {
-    faListUl
-} from '@fortawesome/free-solid-svg-icons';
+import { faListUl } from '@fortawesome/free-solid-svg-icons';
 
 import './index.css';
 import App from './App';

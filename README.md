@@ -47,7 +47,9 @@ To learn React, check out the [React documentation](https://reactjs.org/).
 
 ## Features
 
--   Basic Todo List only titles
--   Add description
--   Add Dates functionality
--
+Reminder App
+Navigation Component
+
+    Body Component
+        All
+        TodoItem Component
