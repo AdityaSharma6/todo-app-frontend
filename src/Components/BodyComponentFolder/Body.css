@@ -1,0 +1,6 @@
+.root-body-container {
+    background-color: red;
+    display: flex;
+    min-width: 300px;
+    flex-grow: 3;
+}

@@ -1,0 +1,17 @@
+.root-navigation-container {
+    min-width: 200px;
+    max-width: 300px;
+    background-color: purple;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+
+    flex-grow: 1;
+}
+
+@media (max-width: 850px), (max-height: 700px) {
+    .root-navbar-container {
+        display: none;
+    }
+}

@@ -1,9 +1,13 @@
 import './App.css';
-
+import { Body } from './Components/BodyComponentFolder/Body';
+import { Navigation } from './Components/NavigationComponent/Navigation';
 
 function App() {
     return (
-        <span> Hello World </span>
+        <div className='root-container'>
+            <Navigation />
+            <Body />
+        </div>
     );
 }
 export default App;

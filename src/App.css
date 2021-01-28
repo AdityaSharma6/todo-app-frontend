@@ -25,7 +25,7 @@ body {
     align-items: center;
 }
 
-.todo-list-container {
+.root-container {
     border: 1px solid var(--custom-white);
     width: 80vw;
     height: 66vh;
@@ -37,9 +37,36 @@ body {
     display: flex;
     flex-direction: row;
     justify-content: flex-start;
+
+    background-color: pink;
+}
+
+.root-navigation-container {
+    min-width: 200px;
+    max-width: 300px;
+    background-color: purple;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+
+    flex-grow: 1;
+}
+
+.root-body-container {
+    background-color: red;
+    display: flex;
+    min-width: 300px;
+    flex-grow: 3;
 }
 
 .todo-body-container {
     background-color: var(--dark-grey);
     flex-grow: 2;
+}
+
+@media (max-width: 850px), (max-height: 700px) {
+    .root-navbar-container {
+        display: none;
+    }
 }
