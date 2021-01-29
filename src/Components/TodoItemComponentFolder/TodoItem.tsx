@@ -15,9 +15,7 @@ export const TodoItem: FunctionComponent<ITodoItemProps> = (props: ITodoItemProp
                     type='checkbox'
                     checked={props.isComplete}
                     className='todoitem-completion-button'
-                    onChange={() =>
-                        props.updateTodoItemCompletionStatus(props._id, !props.isComplete)
-                    }
+                    onChange={() => props.updateTodoItemCompletionStatus(props._id)}
                 />
             </div>
             <div className={'todoitem-information-container'}>

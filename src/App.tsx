@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import './App.css';
 import { TodoList } from './Components/TodoListComponentFolder/TodoList';
 import { TodoItemType, TodoListType } from './types';
@@ -35,12 +36,20 @@ var dataList1: TodoListType = {
 
 function App() {
     // API Request to GET all todoItems of a particular list
+    const [todoListTitle, setTodoListTitle] = useState(dataList1.title);
+
+    const updateTodoListTitle = (updatedTodoListId: string, updatedTodoListTitle: string) => {
+        // API Call to Update Todo List Title
+        setTodoListTitle(updatedTodoListTitle);
+    };
+
     return (
         <div className='root-container'>
             <TodoList
-                title={dataList1.title}
+                title={todoListTitle}
                 todoItemsCollection={dataList1.todoItemsCollection}
                 _id={dataList1._id}
+                updateTodoListTitle={updateTodoListTitle}
             />
         </div>
     );

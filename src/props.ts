@@ -6,14 +6,12 @@ export interface ITodoItemProps {
     title: string;
     isComplete: boolean;
     updateTodoItemTitle: (updatedTodoItemId: string, updatedTodoItemTitle: string) => void;
-    updateTodoItemCompletionStatus: (
-        updatedTodoItemId: string,
-        updatedTodoItemCompletionStatus: boolean
-    ) => void;
+    updateTodoItemCompletionStatus: (updatedTodoItemId: string) => void;
 }
 
 export interface ITodoListProps {
     _id: string;
     title: string;
     todoItemsCollection: TodoItemType[];
+    updateTodoListTitle: (updatedTodoListId: string, updatedTodoListTitle: string) => void;
 }
