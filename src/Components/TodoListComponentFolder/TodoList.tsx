@@ -1,4 +1,3 @@
-import { stringify } from 'querystring';
 import { FunctionComponent, useState } from 'react';
 import { ITodoListProps } from '../../props';
 import { TodoItemType } from '../../types';
