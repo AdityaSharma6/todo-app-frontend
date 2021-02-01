@@ -1,57 +1,62 @@
-import { useState } from 'react';
-import './App.css';
-import { TodoList } from './Components/TodoListComponentFolder/TodoList';
-import { TodoItemType, TodoListType } from './types';
+import React, { FunctionComponent, useState } from 'react';
+import { Main } from './Components/MainComponentFolder/Main';
+import { TodoItemType, TodoListType } from './type';
+import { API } from './constants';
 
-var dataItem1: TodoItemType = {
-    _id: 'item1',
-    listId: 'kladsfj',
-    title: '1A03 Task 1',
-    creationDate: '2020/05/23',
-    isComplete: false,
-};
+export const App: FunctionComponent = () => {
+    const [todoListTitleToRequest, setTodoListTitleToRequest] = useState('');
+    const [todoList, setTodoList] = useState<TodoListType>({
+        _id: '',
+        title: '',
+        creationDate: '',
+        description: '',
+        todoItemsCollection: [],
+    });
 
-var dataItem2: TodoItemType = {
-    _id: 'item2',
-    listId: 'kladsfj',
-    title: '1A03 Task 2',
-    creationDate: '2020/05/23',
-    isComplete: false,
-};
-
-var dataItem3: TodoItemType = {
-    _id: 'item3',
-    listId: 'kladsfj',
-    title: '1A03 Task 3',
-    creationDate: '2020/05/23',
-    isComplete: false,
-};
-
-var dataList1: TodoListType = {
-    _id: 'list1',
-    title: '1A03 List Title',
-    creationDate: '2020/05/22',
-    todoItemsCollection: [dataItem1, dataItem2, dataItem3],
-};
-
-function App() {
-    // API Request to GET all todoItems of a particular list
-    const [todoListTitle, setTodoListTitle] = useState(dataList1.title);
-
-    const updateTodoListTitle = (updatedTodoListId: string, updatedTodoListTitle: string) => {
-        // API Call to Update Todo List Title
-        setTodoListTitle(updatedTodoListTitle);
+    const getTodoListRequest = async () => {
+        const todoListResponse = await fetchTodoListTitle(todoListTitleToRequest);
+        const todoItemsCollectionResponse = await fetchTodoItems(todoListResponse._id);
+        setTodoList({
+            _id: todoListResponse._id,
+            title: todoListResponse.title,
+            creationDate: todoListResponse.creationDate,
+            description: todoListResponse.description,
+            todoItemsCollection: todoItemsCollectionResponse,
+        });
     };
 
     return (
-        <div className='root-container'>
-            <TodoList
-                title={todoListTitle}
-                todoItemsCollection={dataList1.todoItemsCollection}
-                _id={dataList1._id}
-                updateTodoListTitle={updateTodoListTitle}
-            />
-        </div>
+        <Main
+            key={todoList._id}
+            getTodoListRequest={getTodoListRequest}
+            updateTodoListTitleToRequest={setTodoListTitleToRequest}
+            todoListNameToSearch={todoListTitleToRequest}
+            todoList={todoList}
+        />
     );
-}
-export default App;
+};
+
+const fetchTodoListTitle = async (todoListTitle: string): Promise<TodoListType> => {
+    try {
+        const endpoint = API + `list/${todoListTitle}`;
+        const response: Response = await fetch(endpoint);
+        console.log(response);
+        const { data } = await response.json();
+        return data;
+    } catch (error) {
+        console.log(error);
+        return error;
+    }
+};
+
+const fetchTodoItems = async (todoListId: string): Promise<TodoItemType[]> => {
+    try {
+        const endpoint = API + `items/?_listId=${todoListId}`;
+        const response = await fetch(endpoint);
+        const { data } = await response.json();
+        return data;
+    } catch (error) {
+        console.log(error);
+        return error;
+    }
+};
