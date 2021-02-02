@@ -31,7 +31,6 @@ export const App: FunctionComponent = () => {
 
     const createTodoListHandler = async () => {
         const response = await createTodoListInDatabase();
-        console.log(response);
         setTodoList({
             _id: response._id,
             title: response.title,
@@ -58,7 +57,6 @@ const fetchTodoListTitle = async (todoListTitle: string): Promise<TodoListType> 
     try {
         const endpoint = API + `list/${todoListTitle}`;
         const response: Response = await fetch(endpoint);
-        console.log(response);
         const { data } = await response.json();
         return data;
     } catch (error) {
@@ -92,7 +90,7 @@ const createTodoListInDatabase = async (): Promise<TodoListType> => {
                 'Content-Type': 'application/json',
             },
             body: JSON.stringify({
-                title: `Fake Title #${date}`,
+                title: `Fake-Title-${date}`,
                 description: '',
             }),
         });

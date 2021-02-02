@@ -11,7 +11,6 @@ export const TodoList: FunctionComponent<ITodoListProps> = (props: ITodoListProp
     // Function to update the TodoItem information in local state & database
     const updateTodoItemTitle = async (updatedTodoItemId: string, updatedTodoItemTitle: string) => {
         // API Request to update TodoItem in DB goes HERE
-        console.log('updating', updatedTodoItemId);
         setTodoItemsCollection(
             todoItemsCollection.map(todoItem => {
                 if (todoItem._id === updatedTodoItemId) {
@@ -25,7 +24,6 @@ export const TodoList: FunctionComponent<ITodoListProps> = (props: ITodoListProp
 
     const updateTodoItemCompletionStatus = async (updatedTodoItemId: string) => {
         // API Request to update TodoItem in DB goes HERE
-        console.log('updating completion');
         setTodoItemsCollection(
             todoItemsCollection.filter(todoItem => {
                 return todoItem._id !== updatedTodoItemId;
@@ -44,7 +42,6 @@ export const TodoList: FunctionComponent<ITodoListProps> = (props: ITodoListProp
 
         // Temp Stuff being placed in TodoItems[]
         const newTodoItem: TodoItemType = await createTodoItemInDatabase(props._id);
-        console.log(newTodoItem);
         const newTodoItemCollection = [...todoItemsCollection];
         newTodoItemCollection.push(newTodoItem);
         setTodoItemsCollection(newTodoItemCollection);
