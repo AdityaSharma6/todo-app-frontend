@@ -15,11 +15,13 @@ export interface ITodoListProps {
     todoItemsCollection: TodoItemType[];
     setTodoListTitleState: (updatedTodoListTitle: string) => void;
     updateTodoListTitleHandler: (keyPressed: React.KeyboardEvent<HTMLInputElement>) => void;
+    createTodoListHandler: () => void;
 }
 
 export interface IMainProps {
     getTodoListRequest: () => void; // Presses Enter and Files Request
     updateTodoListTitleToRequest: (todoListNameToSearch: string) => void; // Everynew Input
+    createTodoListHandler: () => void;
     todoListNameToSearch: string;
     todoList: TodoListType;
 }
