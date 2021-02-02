@@ -2,6 +2,7 @@ import React, { FunctionComponent, useState } from 'react';
 import { Main } from './Components/MainComponentFolder/Main';
 import { TodoItemType, TodoListType } from './type';
 import { API } from './constants';
+import { getTodaysDate } from './Utility/getTodaysDate';
 
 export const App: FunctionComponent = () => {
     const [todoListTitleToRequest, setTodoListTitleToRequest] = useState('');
@@ -101,15 +102,4 @@ const createTodoListInDatabase = async (): Promise<TodoListType> => {
         console.log(error);
         return error;
     }
-};
-
-export const getTodaysDate = () => {
-    const today = new Date();
-    const day = today.getFullYear();
-    const month = today.getMonth() + 1;
-    const year = today.getDate();
-    const hour = today.getHours();
-    const minutes = today.getMinutes();
-    const seconds = today.getSeconds();
-    return year + '-' + month + '-' + day + '-' + hour + '-' + minutes + '-' + seconds;
 };
