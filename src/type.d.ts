@@ -1,6 +1,6 @@
 export type TodoItemType = {
     _id: string;
-    listId: string;
+    _listId: string;
     title: string;
     description?: string;
     creationDate: string;
@@ -14,4 +14,9 @@ export type TodoListType = {
     description?: string;
     creationDate: string;
     todoItemsCollection: TodoItemType[];
+};
+
+export type TodoListAPIType = {
+    message: string;
+    data: TodoListType;
 };
