@@ -16,12 +16,15 @@ export const App: FunctionComponent = () => {
     const getTodoListRequest = async () => {
         const todoListResponse = await fetchTodoListTitle(todoListTitleToRequest);
         const todoItemsCollectionResponse = await fetchTodoItems(todoListResponse._id);
+        const incompleteTodoItemCollection = todoItemsCollectionResponse.filter(todoItem => {
+            if (!todoItem.isComplete) return todoItem;
+        });
         setTodoList({
             _id: todoListResponse._id,
             title: todoListResponse.title,
             creationDate: todoListResponse.creationDate,
             description: todoListResponse.description,
-            todoItemsCollection: todoItemsCollectionResponse,
+            todoItemsCollection: incompleteTodoItemCollection,
         });
     };
 
