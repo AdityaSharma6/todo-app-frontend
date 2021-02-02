@@ -12,8 +12,10 @@
         "@types/node": "^12.19.14",
         "@types/react": "^16.14.2",
         "@types/react-dom": "^16.9.10",
+        "@typescript-eslint/eslint-plugin": "^4.13.0",
+        "@typescript-eslint/parser": "^4.13.0",
+        "eslint": "^7.17.0",
         "fuse.js": "^6.4.6",
-        "prettier": "^2.2.1",
         "react": "^17.0.1",
         "react-dom": "^17.0.1",
         "react-scripts": "4.0.1",
@@ -21,7 +23,8 @@
         "web-vitals": "^0.2.4"
     },
     "scripts": {
-        "format": "prettier --write 'src/*.tsx' 'src/**/*.tsx' 'src/*.css' 'src/**/*.css'",
+        "lint": "eslint '*/**/*.{js,ts,tsx}' --quiet --fix",
+        "prettier-format": "prettier --write 'src/*.tsx' 'src/**/*.tsx' 'src/*.css' 'src/**/*.css'",
         "start": "react-scripts start",
         "build": "react-scripts build",
         "test": "react-scripts test",
@@ -53,8 +56,12 @@
         "enzyme": "3.11.0",
         "enzyme-adapter-react-16": "1.15.6",
         "enzyme-to-json": "3.6.1",
+        "eslint-config-prettier": "^7.2.0",
+        "eslint-plugin-prettier": "^3.3.1",
+        "eslint-plugin-react": "^7.22.0",
         "husky": "^4.3.8",
         "jest-fetch-mock": "3.0.3",
+        "prettier": "^2.2.1",
         "pretty-quick": "^3.1.0",
         "ts-jest": "26.5.0"
     },
@@ -62,6 +69,11 @@
         "hooks": {
             "pre-commit": "pretty-quick --staged"
         }
+    },
+    "lint-staged": {
+        "*.{js,ts,tsx}": [
+            "eslint --fix"
+        ]
     },
     "jest": {
         "collectCoverageFrom": [
