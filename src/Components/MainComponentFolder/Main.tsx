@@ -32,6 +32,7 @@ export const Main: FunctionComponent<IMainProps> = (props: IMainProps) => {
                 _id={props.todoList._id}
                 setTodoListTitleState={setTodoListTitleState}
                 updateTodoListTitleHandler={updateTodoListTitleHandler}
+                createTodoListHandler={props.createTodoListHandler}
             />
 
             <input
