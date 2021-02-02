@@ -57,7 +57,7 @@ export const TodoList: FunctionComponent<ITodoListProps> = (props: ITodoListProp
                     <input
                         className='todolist-title'
                         value={props.title}
-                        placeholder={'Add Todo List Title'}
+                        placeholder={'Todo List Title'}
                         onChange={e => props.setTodoListTitleState(e.target.value)}
                         onKeyPress={e => props.updateTodoListTitleHandler(e)}
                     />
@@ -73,13 +73,22 @@ export const TodoList: FunctionComponent<ITodoListProps> = (props: ITodoListProp
         );
     };
 
-    return (
-        <div className='root-todolist-container'>
-            <div className='todolist-buttons-container'>
+    // Determines when to render the Add Item Button
+    const renderAddItemButton = () => {
+        if (props._id) {
+            return (
                 <button className={'add-todoitem-button'} onClick={addNewTodoItem}>
                     Add Item
                 </button>
-                <button className={'add-todoitem-button'} onClick={addNewTodoItem}>
+            );
+        }
+    };
+
+    return (
+        <div className='root-todolist-container'>
+            <div className='todolist-buttons-container'>
+                {renderAddItemButton()}
+                <button className={'add-todoitem-button'} onClick={props.createTodoListHandler}>
                     Create New List
                 </button>
             </div>
@@ -103,6 +112,7 @@ export const TodoList: FunctionComponent<ITodoListProps> = (props: ITodoListProp
     );
 };
 
+// PUT updateOneItem
 const updateTodoItemInDatabase = async (itemId: string, updatedItem: any) => {
     const endpoint = API + `items/${itemId}`;
     try {
@@ -124,10 +134,10 @@ const updateTodoItemInDatabase = async (itemId: string, updatedItem: any) => {
     }
 };
 
+// POST createOneItem
 const createTodoItemInDatabase = async (_listId: string) => {
-    const endpoint = API + `items/1`;
+    const endpoint = API + `items/`;
     try {
-        console.log(_listId);
         const response = await fetch(endpoint, {
             method: 'POST',
             headers: {
