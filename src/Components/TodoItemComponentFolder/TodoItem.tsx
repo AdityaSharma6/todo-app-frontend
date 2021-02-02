@@ -1,13 +1,17 @@
 import { useState } from 'react';
-import { FunctionComponent } from 'react';
+import React, { FunctionComponent } from 'react';
 import { ITodoItemProps } from '../../props';
 import './TodoItem.css';
 
 export const TodoItem: FunctionComponent<ITodoItemProps> = (props: ITodoItemProps) => {
-    /*
-    Data Used
-    - TodoItem Title
-    */
+    const [todoItemTitleState, setTodoItemTitleState] = useState(props.title);
+
+    const updateTodoItemTitleHandler = (keyPressed: React.KeyboardEvent<HTMLInputElement>) => {
+        if (keyPressed.key === 'Enter') {
+            props.updateTodoItemTitle(props._id, todoItemTitleState);
+        }
+    };
+
     return (
         <div className='todoitem-container'>
             <div className='todoitem-completion-button-container'>
@@ -23,10 +27,11 @@ export const TodoItem: FunctionComponent<ITodoItemProps> = (props: ITodoItemProp
                     type={'text'}
                     className={'todoitem-title'}
                     placeholder={'Add Todo Item'}
-                    value={props.title}
+                    value={todoItemTitleState}
                     onChange={e => {
-                        props.updateTodoItemTitle(props._id, e.target.value);
+                        setTodoItemTitleState(e.target.value);
                     }}
+                    onKeyPress={e => updateTodoItemTitleHandler(e)}
                 />
             </div>
         </div>
