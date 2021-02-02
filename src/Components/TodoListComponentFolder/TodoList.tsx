@@ -50,21 +50,40 @@ export const TodoList: FunctionComponent<ITodoListProps> = (props: ITodoListProp
         setTodoItemsCollection(newTodoItemCollection);
     };
 
+    const renderTodoListInformation = () => {
+        if (props._id) {
+            return (
+                <div className='todolist-information-container'>
+                    <input
+                        className='todolist-title'
+                        value={props.title}
+                        placeholder={'Add Todo List Title'}
+                        onChange={e => props.setTodoListTitleState(e.target.value)}
+                        onKeyPress={e => props.updateTodoListTitleHandler(e)}
+                    />
+                    <div className='todolist-uncompleted-item-count'>{todoItemsCollection.length}</div>
+                </div>
+            );
+        }
+
+        return (
+            <div className='todolist-information-container'>
+                <h1 className='todolist-title'>Create or Find a List</h1>
+            </div>
+        );
+    };
+
     return (
         <div className='root-todolist-container'>
-            <button className={'add-todoitem-button'} onClick={addNewTodoItem}>
-                +
-            </button>
-            <div className='todolist-information-container'>
-                <input
-                    className='todolist-title'
-                    value={props.title}
-                    placeholder={'Add Todo List Title'}
-                    onChange={e => props.setTodoListTitleState(e.target.value)}
-                    onKeyPress={e => props.updateTodoListTitleHandler(e)}
-                />
-                <div className='todolist-uncompleted-item-count'>{todoItemsCollection.length}</div>
+            <div className='todolist-buttons-container'>
+                <button className={'add-todoitem-button'} onClick={addNewTodoItem}>
+                    Add Item
+                </button>
+                <button className={'add-todoitem-button'} onClick={addNewTodoItem}>
+                    Create New List
+                </button>
             </div>
+            {renderTodoListInformation()}
             <div className='todolist-todoitem-collection-container'>
                 {todoItemsCollection.map(todoItem => {
                     return (
