@@ -47,9 +47,8 @@ To learn React, check out the [React documentation](https://reactjs.org/).
 
 ## Features
 
-Reminder App
-Navigation Component
-
-    Body Component
-        All
-        TodoItem Component
+- \*Type specifies the Type
+- I\* specifies the Interface
+- \*Props specifies the Prop
+- \*Handler organizes the logic (state changes, modifying data etc...) prior to sending a request or
+- render\*() - function that runs logic to determine what to render
